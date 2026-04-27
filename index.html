@@ -1,0 +1,306 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>BBUFC – Basongora-Bakonzo United Farmers Consortium</title>
+<link href="https://fonts.googleapis.com/css2?family=Syne:wght@700;800&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    --green: #00C853;
+    --lime: #AEEA00;
+    --orange: #FF6D00;
+    --earth: #4E342E;
+    --dark: #0D1F0F;
+    --cream: #FAFAF2;
+  }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    font-family: 'DM Sans', sans-serif;
+    background: var(--dark);
+    color: var(--cream);
+    overflow-x: hidden;
+  }
+
+  nav {
+    position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+    display: flex; align-items: center; justify-content: space-between;
+    padding: 18px 40px;
+    background: rgba(13,31,15,0.85);
+    backdrop-filter: blur(12px);
+    border-bottom: 1px solid rgba(0,200,83,0.15);
+  }
+  .nav-logo { font-family: 'Syne', sans-serif; font-size: 1.1rem; font-weight: 800; color: var(--lime); letter-spacing: 0.04em; }
+  .nav-logo span { color: var(--green); }
+  .nav-links { display: flex; gap: 32px; list-style: none; }
+  .nav-links a { color: rgba(250,250,242,0.7); text-decoration: none; font-size: 0.85rem; font-weight: 500; letter-spacing: 0.06em; text-transform: uppercase; transition: color 0.2s; }
+  .nav-links a:hover { color: var(--lime); }
+  .nav-cta { background: var(--green); color: var(--dark); border: none; padding: 10px 22px; border-radius: 100px; font-family: 'DM Sans', sans-serif; font-weight: 700; font-size: 0.85rem; cursor: pointer; transition: background 0.2s, transform 0.15s; }
+  .nav-cta:hover { background: var(--lime); transform: scale(1.04); }
+
+  .hero { min-height: 100vh; display: grid; place-items: center; position: relative; overflow: hidden; padding: 120px 40px 80px; }
+  .hero-bg { position: absolute; inset: 0; background: radial-gradient(ellipse 60% 50% at 80% 40%, rgba(0,200,83,0.18) 0%, transparent 70%), radial-gradient(ellipse 40% 40% at 15% 70%, rgba(174,234,0,0.12) 0%, transparent 60%), radial-gradient(ellipse 30% 30% at 50% 10%, rgba(255,109,0,0.1) 0%, transparent 60%); }
+  .hero-grid { position: absolute; inset: 0; background-image: linear-gradient(rgba(0,200,83,0.05) 1px, transparent 1px), linear-gradient(90deg, rgba(0,200,83,0.05) 1px, transparent 1px); background-size: 60px 60px; }
+  .hero-content { position: relative; max-width: 900px; text-align: center; }
+  .hero-badge { display: inline-flex; align-items: center; gap: 8px; background: rgba(0,200,83,0.12); border: 1px solid rgba(0,200,83,0.3); color: var(--green); border-radius: 100px; padding: 6px 18px; font-size: 0.78rem; font-weight: 500; letter-spacing: 0.08em; text-transform: uppercase; margin-bottom: 28px; animation: fadeUp 0.7s ease both; }
+  .hero-badge::before { content: ''; width: 7px; height: 7px; border-radius: 50%; background: var(--green); animation: pulse 1.5s infinite; }
+  @keyframes pulse { 0%,100%{opacity:1;transform:scale(1)} 50%{opacity:0.5;transform:scale(1.4)} }
+  .hero h1 { font-family: 'Syne', sans-serif; font-size: clamp(2.8rem, 7vw, 6rem); font-weight: 800; line-height: 1.0; letter-spacing: -0.02em; animation: fadeUp 0.7s 0.1s ease both; }
+  .hero h1 em { font-style: normal; color: var(--lime); }
+  .hero h1 .accent { color: var(--orange); }
+  .hero-sub { max-width: 560px; margin: 24px auto 0; color: rgba(250,250,242,0.65); font-size: 1.05rem; line-height: 1.7; animation: fadeUp 0.7s 0.2s ease both; }
+  .hero-actions { display: flex; gap: 16px; justify-content: center; flex-wrap: wrap; margin-top: 40px; animation: fadeUp 0.7s 0.3s ease both; }
+  .btn-primary { background: var(--green); color: var(--dark); border: none; padding: 15px 36px; border-radius: 100px; font-family: 'DM Sans',sans-serif; font-weight: 700; font-size: 1rem; cursor: pointer; transition: background 0.2s, transform 0.15s; text-decoration: none; display: inline-block; }
+  .btn-primary:hover { background: var(--lime); transform: translateY(-2px); }
+  .btn-outline { background: transparent; color: var(--cream); border: 1.5px solid rgba(250,250,242,0.25); padding: 15px 36px; border-radius: 100px; font-family: 'DM Sans',sans-serif; font-weight: 500; font-size: 1rem; cursor: pointer; transition: border-color 0.2s, transform 0.15s; text-decoration: none; display: inline-block; }
+  .btn-outline:hover { border-color: var(--green); transform: translateY(-2px); }
+  .hero-stats { display: flex; gap: 48px; justify-content: center; flex-wrap: wrap; margin-top: 64px; padding-top: 48px; border-top: 1px solid rgba(250,250,242,0.08); animation: fadeUp 0.7s 0.4s ease both; }
+  .stat { text-align: center; }
+  .stat-num { font-family: 'Syne', sans-serif; font-size: 2.4rem; font-weight: 800; color: var(--lime); line-height: 1; }
+  .stat-label { font-size: 0.82rem; color: rgba(250,250,242,0.5); margin-top: 4px; text-transform: uppercase; letter-spacing: 0.06em; }
+  @keyframes fadeUp { from{opacity:0;transform:translateY(24px)} to{opacity:1;transform:none} }
+
+  section { padding: 100px 40px; }
+  .section-tag { font-size: 0.75rem; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase; color: var(--green); margin-bottom: 12px; }
+  .section-title { font-family: 'Syne', sans-serif; font-size: clamp(2rem, 4vw, 3.2rem); font-weight: 800; line-height: 1.1; letter-spacing: -0.02em; }
+  .section-title em { font-style: normal; color: var(--lime); }
+
+  .about { background: var(--dark); }
+  .about-inner { max-width: 1100px; margin: 0 auto; display: grid; grid-template-columns: 1fr 1fr; gap: 80px; align-items: center; }
+  .about-visual { position: relative; height: 420px; }
+  .about-card { position: absolute; border-radius: 20px; padding: 28px; font-family: 'Syne', sans-serif; }
+  .about-card.c1 { background: var(--green); color: var(--dark); top: 0; left: 0; right: 60px; height: 200px; display: flex; flex-direction: column; justify-content: space-between; }
+  .about-card.c2 { background: rgba(174,234,0,0.12); border: 1px solid rgba(174,234,0,0.3); bottom: 0; right: 0; left: 60px; height: 200px; display: flex; flex-direction: column; justify-content: space-between; }
+  .about-card.c3 { background: var(--orange); color: white; width: 140px; height: 140px; border-radius: 50%; display: flex; flex-direction: column; align-items: center; justify-content: center; top: 50%; left: 50%; transform: translate(-50%,-50%); text-align: center; font-weight: 800; }
+  .card-big { font-size: 2.5rem; font-weight: 800; line-height: 1; }
+  .card-sm { font-size: 0.78rem; opacity: 0.75; font-family: 'DM Sans',sans-serif; }
+  .about-text p { color: rgba(250,250,242,0.65); line-height: 1.8; margin-top: 20px; }
+  .about-text p + p { margin-top: 14px; }
+
+  .chains { background: #0A1A0C; }
+  .chains-inner { max-width: 1100px; margin: 0 auto; }
+  .chains-header { text-align: center; margin-bottom: 60px; }
+  .chains-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(220px, 1fr)); gap: 20px; }
+  .chain-card { background: rgba(255,255,255,0.04); border: 1px solid rgba(255,255,255,0.07); border-radius: 16px; padding: 28px 24px; transition: transform 0.2s, border-color 0.2s, background 0.2s; cursor: default; }
+  .chain-card:hover { transform: translateY(-6px); border-color: var(--green); background: rgba(0,200,83,0.07); }
+  .chain-icon { font-size: 2rem; margin-bottom: 14px; }
+  .chain-name { font-family: 'Syne', sans-serif; font-size: 0.95rem; font-weight: 700; color: var(--cream); margin-bottom: 6px; }
+  .chain-desc { font-size: 0.8rem; color: rgba(250,250,242,0.45); line-height: 1.5; }
+
+  .members { background: var(--dark); }
+  .members-inner { max-width: 1100px; margin: 0 auto; }
+  .members-header { margin-bottom: 50px; }
+  .members-scroll { display: flex; gap: 20px; overflow-x: auto; padding-bottom: 16px; scrollbar-width: thin; scrollbar-color: var(--green) transparent; }
+  .member-pill { flex-shrink: 0; background: rgba(255,255,255,0.04); border: 1px solid rgba(255,255,255,0.08); border-radius: 12px; padding: 16px 22px; min-width: 220px; transition: border-color 0.2s, transform 0.15s; }
+  .member-pill:hover { border-color: var(--lime); transform: scale(1.02); }
+  .member-pill .num { font-family: 'Syne',sans-serif; font-size: 0.7rem; color: var(--green); font-weight: 800; letter-spacing: 0.08em; margin-bottom: 8px; }
+  .member-pill .mname { font-size: 0.88rem; font-weight: 500; line-height: 1.4; color: var(--cream); }
+  .member-pill .mprod { font-size: 0.75rem; color: rgba(250,250,242,0.45); margin-top: 6px; }
+
+  .mission { background: var(--green); color: var(--dark); text-align: center; }
+  .mission-inner { max-width: 1000px; margin: 0 auto; }
+  .mission .section-tag { color: rgba(13,31,15,0.6); }
+  .mission .section-title { color: var(--dark); }
+  .mission .section-title em { color: var(--earth); }
+  .mission-goals { display: grid; grid-template-columns: repeat(auto-fill, minmax(240px, 1fr)); gap: 16px; margin-top: 48px; text-align: left; }
+  .goal { background: rgba(13,31,15,0.08); border-radius: 14px; padding: 20px; display: flex; gap: 14px; align-items: flex-start; }
+  .goal-n { font-family: 'Syne',sans-serif; font-size: 1.4rem; font-weight: 800; color: rgba(13,31,15,0.25); line-height: 1; flex-shrink: 0; }
+  .goal-text { font-size: 0.85rem; line-height: 1.6; color: rgba(13,31,15,0.8); }
+
+  .contact { background: #0A1A0C; text-align: center; }
+  .contact-inner { max-width: 600px; margin: 0 auto; }
+  .contact .section-title { margin-bottom: 16px; }
+  .contact p { color: rgba(250,250,242,0.55); margin-bottom: 36px; line-height: 1.7; }
+  .contact-info { display: flex; flex-direction: column; gap: 12px; align-items: center; }
+  .contact-row { display: flex; gap: 10px; align-items: center; color: rgba(250,250,242,0.75); font-size: 0.9rem; }
+
+  footer { background: var(--dark); border-top: 1px solid rgba(255,255,255,0.06); padding: 32px 40px; text-align: center; color: rgba(250,250,242,0.3); font-size: 0.8rem; }
+  footer span { color: var(--green); }
+
+  @media(max-width:700px) {
+    nav { padding: 14px 20px; }
+    .nav-links, .nav-cta { display: none; }
+    section { padding: 70px 20px; }
+    .about-inner { grid-template-columns: 1fr; gap: 40px; }
+    .about-visual { height: 280px; }
+    .hero { padding: 100px 20px 60px; }
+    footer { padding: 24px 20px; }
+  }
+</style>
+</head>
+<body>
+
+<nav>
+  <div class="nav-logo">BB<span>UFC</span></div>
+  <ul class="nav-links">
+    <li><a href="#about">About</a></li>
+    <li><a href="#chains">Value Chains</a></li>
+    <li><a href="#members">Members</a></li>
+    <li><a href="#contact">Contact</a></li>
+  </ul>
+  <button class="nav-cta">Join Us</button>
+</nav>
+
+<section class="hero">
+  <div class="hero-bg"></div>
+  <div class="hero-grid"></div>
+  <div class="hero-content">
+    <div class="hero-badge">Kasese District, Uganda · Est. 2019</div>
+    <h1>United Farmers<br><em>Stronger</em> <span class="accent">Together</span></h1>
+    <p class="hero-sub">Basongora-Bakonzo United Farmers Consortium — connecting 20 farmer groups across 12 value chains in Western Uganda to build sustainable livelihoods and thriving markets.</p>
+    <div class="hero-actions">
+      <a href="#chains" class="btn-primary">Explore Value Chains</a>
+      <a href="#members" class="btn-outline">Our Members</a>
+    </div>
+    <div class="hero-stats">
+      <div class="stat"><div class="stat-num">20</div><div class="stat-label">Farmer Groups</div></div>
+      <div class="stat"><div class="stat-num">12</div><div class="stat-label">Value Chains</div></div>
+      <div class="stat"><div class="stat-num">3</div><div class="stat-label">Sub-Counties</div></div>
+      <div class="stat"><div class="stat-num">∞</div><div class="stat-label">Ambition</div></div>
+    </div>
+  </div>
+</section>
+
+<section class="about" id="about">
+  <div class="about-inner">
+    <div class="about-visual">
+      <div class="about-card c1">
+        <div>
+          <div class="card-big">BBUFC</div>
+          <div class="card-sm">Registered Company Limited by Guarantee</div>
+        </div>
+        <div style="font-family:'DM Sans',sans-serif;font-size:0.8rem;opacity:0.7">Reg. No. 80034385952721</div>
+      </div>
+      <div class="about-card c3">
+        <div style="font-size:1.6rem;font-weight:800">2019</div>
+        <div style="font-family:'DM Sans',sans-serif;font-size:0.7rem;opacity:0.85;margin-top:4px">Founded</div>
+      </div>
+      <div class="about-card c2">
+        <div>
+          <div style="font-family:'Syne',sans-serif;font-size:1.1rem;font-weight:800;color:var(--lime)">Headquarters</div>
+          <div style="font-family:'DM Sans',sans-serif;font-size:0.82rem;color:rgba(250,250,242,0.6);margin-top:6px;line-height:1.5">MENODA, Kisinga,<br>Nyakatonzi & Munkunyu<br>Sub-Counties, Kasese</div>
+        </div>
+      </div>
+    </div>
+    <div class="about-text">
+      <div class="section-tag">Who We Are</div>
+      <h2 class="section-title">Farming that <em>builds</em> communities</h2>
+      <p>BBUFC is a consortium of 20 registered farmer groups organized across 12 agricultural value chains, operating in Kasese District under Uganda's Plan for Modernization of Agriculture (PMA).</p>
+      <p>Formerly known as Farmers Farming Together For Sustainable Value Chains, we unite producers, processors, and traders to create sustainable market chains within Uganda and across East Africa.</p>
+      <p>Our work spans food production, agro-processing, soap making, carpentry, and environmental sustainability — all grounded in shared knowledge and mutual growth.</p>
+    </div>
+  </div>
+</section>
+
+<section class="chains" id="chains">
+  <div class="chains-inner">
+    <div class="chains-header">
+      <div class="section-tag">What We Produce</div>
+      <h2 class="section-title">Our 12 <em>Value Chains</em></h2>
+    </div>
+    <div class="chains-grid">
+      <div class="chain-card"><div class="chain-icon">🌽</div><div class="chain-name">Maize Production</div><div class="chain-desc">Large-scale maize farming and value addition</div></div>
+      <div class="chain-card"><div class="chain-icon">🐟</div><div class="chain-name">Fish Farming</div><div class="chain-desc">Fish, fingerlings, fries and aquaculture inputs</div></div>
+      <div class="chain-card"><div class="chain-icon">🐄</div><div class="chain-name">Dairy & Cattle</div><div class="chain-desc">Dairy production and cattle rearing</div></div>
+      <div class="chain-card"><div class="chain-icon">🐖</div><div class="chain-name">Swine / Piggery</div><div class="chain-desc">Piglets, pork and associated products</div></div>
+      <div class="chain-card"><div class="chain-icon">🐓</div><div class="chain-name">Poultry</div><div class="chain-desc">Village hatchery, feeds, pullets & eggs</div></div>
+      <div class="chain-card"><div class="chain-icon">🐐</div><div class="chain-name">Goat & Sheep</div><div class="chain-desc">Improved goat multiplication and livestock</div></div>
+      <div class="chain-card"><div class="chain-icon">🍯</div><div class="chain-name">Beekeeping & Honey</div><div class="chain-desc">Organic honey and apiculture products</div></div>
+      <div class="chain-card"><div class="chain-icon">🍫</div><div class="chain-name">Cocoa & Coffee</div><div class="chain-desc">Cocoa, vanilla and specialty crops</div></div>
+      <div class="chain-card"><div class="chain-icon">🧼</div><div class="chain-name">Soap Production</div><div class="chain-desc">Herbal, medicinal and laundry soaps</div></div>
+      <div class="chain-card"><div class="chain-icon">🐑</div><div class="chain-name">Ruminant Feeds</div><div class="chain-desc">Biowaste animal feeds for cows, goats, sheep</div></div>
+      <div class="chain-card"><div class="chain-icon">🔥</div><div class="chain-name">Biomass Briquettes</div><div class="chain-desc">Eco-friendly fuel from agricultural waste</div></div>
+      <div class="chain-card"><div class="chain-icon">🍄</div><div class="chain-name">Mushroom Production</div><div class="chain-desc">Edible mushroom cultivation and processing</div></div>
+    </div>
+  </div>
+</section>
+
+<section class="members" id="members">
+  <div class="members-inner">
+    <div class="members-header">
+      <div class="section-tag">Consortium Members</div>
+      <h2 class="section-title">20 Groups, <em>One Vision</em></h2>
+    </div>
+    <div class="members-scroll">
+      <div class="member-pill"><div class="num">01</div><div class="mname">MENODA</div><div class="mprod">Maize, mushrooms & poultry</div></div>
+      <div class="member-pill"><div class="num">02</div><div class="mname">Barglads Group</div><div class="mprod">Fish & rabbits</div></div>
+      <div class="member-pill"><div class="num">03</div><div class="mname">MOBB Initiative</div><div class="mprod">Fingerlings, fries & trainings</div></div>
+      <div class="member-pill"><div class="num">04</div><div class="mname">Kayanja Bihanda Coop</div><div class="mprod">Fish, fries & organic honey</div></div>
+      <div class="member-pill"><div class="num">05</div><div class="mname">Katako Aggro</div><div class="mprod">Biomass briquettes</div></div>
+      <div class="member-pill"><div class="num">06</div><div class="mname">ITUWA</div><div class="mprod">Organic honey</div></div>
+      <div class="member-pill"><div class="num">07</div><div class="mname">Kamuruli Livestock</div><div class="mprod">Dairy</div></div>
+      <div class="member-pill"><div class="num">08</div><div class="mname">Impact Agro-Enterprises</div><div class="mprod">Animal feeds for ruminants</div></div>
+      <div class="member-pill"><div class="num">09</div><div class="mname">Sunda Foundation</div><div class="mprod">Goats, cows, sheep & pigs</div></div>
+      <div class="member-pill"><div class="num">10</div><div class="mname">Margharita Organic COOP</div><div class="mprod">Cocoa & vanilla</div></div>
+      <div class="member-pill"><div class="num">11</div><div class="mname">Kinyamaseke West PWD</div><div class="mprod">Poultry & horticultural crops</div></div>
+      <div class="member-pill"><div class="num">12</div><div class="mname">Butheke Farmers Coop</div><div class="mprod">Poultry feeds processing</div></div>
+      <div class="member-pill"><div class="num">13</div><div class="mname">Women Soap Federation</div><div class="mprod">Laundry & herbal soaps</div></div>
+      <div class="member-pill"><div class="num">14</div><div class="mname">Kinyamaseke Carpenters</div><div class="mprod">Furniture & fittings</div></div>
+      <div class="member-pill"><div class="num">15</div><div class="mname">Kasese Rwenzori United</div><div class="mprod">Fish, pigs, cashew & avocado</div></div>
+      <div class="member-pill"><div class="num">16</div><div class="mname">Small World–Eco Trust</div><div class="mprod">Village hatchery</div></div>
+      <div class="member-pill"><div class="num">17</div><div class="mname">BusungaTungukye Group</div><div class="mprod">Dairy</div></div>
+      <div class="member-pill"><div class="num">18</div><div class="mname">Katuramu Piggery Farm</div><div class="mprod">Piglets & pullets</div></div>
+      <div class="member-pill"><div class="num">19</div><div class="mname">BARWODA</div><div class="mprod">Farm inputs supplier</div></div>
+      <div class="member-pill"><div class="num">20</div><div class="mname">NICOHAT</div><div class="mprod">Poultry & piglets</div></div>
+    </div>
+  </div>
+</section>
+
+<section class="mission" id="mission">
+  <div class="mission-inner">
+    <div class="section-tag">Our Mission</div>
+    <h2 class="section-title">What We're <em>Working</em> Toward</h2>
+    <div class="mission-goals">
+      <div class="goal"><span class="goal-n">01</span><span class="goal-text">Create sustainable market chains in Uganda and internationally for our members' products</span></div>
+      <div class="goal"><span class="goal-n">02</span><span class="goal-text">Generate employment for youth, women, men and people with disabilities</span></div>
+      <div class="goal"><span class="goal-n">03</span><span class="goal-text">Share knowledge and skills to produce high-quality goods for the East African Common Market</span></div>
+      <div class="goal"><span class="goal-n">04</span><span class="goal-text">Build a united marketing platform enabling members to sell profitably and easily</span></div>
+      <div class="goal"><span class="goal-n">05</span><span class="goal-text">Conduct market research across COMESA, SADC and ECOWAS regions</span></div>
+      <div class="goal"><span class="goal-n">06</span><span class="goal-text">Strengthen member capacity to become reliable links in our supply chain</span></div>
+    </div>
+  </div>
+</section>
+
+<section class="contact" id="contact">
+  <div class="contact-inner">
+    <div class="section-tag">Get In Touch</div>
+    <h2 class="section-title">Let's <em>Work Together</em></h2>
+    <p>We welcome partners, buyers, investors and new farmer groups who share our vision of sustainable, community-driven agriculture.</p>
+    <div class="contact-info">
+      <div class="contact-row"><span>📍</span> P.O. Box 46, Kasese, Uganda</div>
+      <div class="contact-row"><span>📞</span> +256 770 943 661 / +256 789 113 942</div>
+      <div class="contact-row"><span>📞</span> +256 766 789 77</div>
+    </div>
+    <div style="margin-top:40px">
+      <a href="tel:+256770943661" class="btn-primary">Call Us Now</a>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <span>BBUFC</span> · Basongora-Bakonzo United Farmers Consortium · Kasese, Uganda · Est. 2019
+</footer>
+
+<script>
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(e => {
+      if(e.isIntersecting) {
+        e.target.style.opacity = '1';
+        e.target.style.transform = 'translateY(0)';
+      }
+    });
+  }, { threshold: 0.1 });
+
+  document.querySelectorAll('.chain-card, .member-pill, .goal, .about-card').forEach(el => {
+    el.style.opacity = '0';
+    el.style.transform = 'translateY(20px)';
+    el.style.transition = 'opacity 0.5s ease, transform 0.5s ease';
+    observer.observe(el);
+  });
+</script>
+</body>
+</html>
