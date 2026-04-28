@@ -155,22 +155,57 @@ header.scrolled {
   min-height: 680px;
   overflow: hidden;
 }
-.hero-bg {
+
+/* ─── HERO SLIDESHOW ─────────────────────────── */
+.hero-slideshow {
   position: absolute;
   inset: 0;
-  background-image: url('https://images.unsplash.com/photo-1500382017468-9049fed747ef?w=1800&q=80');
+  z-index: 0;
+}
+.hero-slide {
+  position: absolute;
+  inset: 0;
   background-size: cover;
-  background-position: center 40%;
-  transform: scale(1.05);
-  animation: heroZoom 12s ease-out forwards;
+  background-position: center;
+  opacity: 0;
+  /* Slide slowly from left to right */
+  animation: slideShow 60s linear infinite;
+  will-change: transform, opacity;
 }
-@keyframes heroZoom {
-  from { transform: scale(1.05); }
-  to   { transform: scale(1.0); }
+/* Stagger each slide by 6s (60s total / 10 images = 6s each) */
+.hero-slide:nth-child(1)  { animation-delay:  0s; }
+.hero-slide:nth-child(2)  { animation-delay:  6s; }
+.hero-slide:nth-child(3)  { animation-delay: 12s; }
+.hero-slide:nth-child(4)  { animation-delay: 18s; }
+.hero-slide:nth-child(5)  { animation-delay: 24s; }
+.hero-slide:nth-child(6)  { animation-delay: 30s; }
+.hero-slide:nth-child(7)  { animation-delay: 36s; }
+.hero-slide:nth-child(8)  { animation-delay: 42s; }
+.hero-slide:nth-child(9)  { animation-delay: 48s; }
+.hero-slide:nth-child(10) { animation-delay: 54s; }
+
+/*
+  Each slide's keyframe lifecycle within the 60s loop:
+  - Starts at 0% (its own turn begins)
+  - Fades in and starts moving left→right
+  - Fades out after 10% of cycle (= 6s per slide)
+  We achieve this by expressing percentages relative to the full 60s duration.
+  Each slide is "active" for 1/10th of the cycle = 10%.
+  Crossfade overlap: 1% (0.6s)
+*/
+@keyframes slideShow {
+  0%        { opacity: 0;   transform: scale(1.08) translateX(-3%); }
+  1%        { opacity: 1;   transform: scale(1.06) translateX(-2%); }
+  9%        { opacity: 1;   transform: scale(1.02) translateX( 2%); }
+  10%       { opacity: 0;   transform: scale(1.00) translateX( 3%); }
+  10.001%   { opacity: 0;   transform: scale(1.08) translateX(-3%); }
+  100%      { opacity: 0;   transform: scale(1.08) translateX(-3%); }
 }
+
 .hero-overlay {
   position: absolute;
   inset: 0;
+  z-index: 1;
   background: linear-gradient(
     105deg,
     rgba(10,28,14,0.88) 0%,
@@ -290,7 +325,6 @@ header.scrolled {
   padding: 0 2.5rem;
   display: grid;
   grid-template-columns: repeat(4, 1fr);
-  divide: var(--border);
 }
 .stat-cell {
   padding: 1.4rem 1.5rem;
@@ -322,6 +356,30 @@ header.scrolled {
   text-transform: uppercase;
   margin-top: 3px;
   font-weight: 300;
+}
+
+/* ─── SLIDESHOW DOTS ─────────────────────────── */
+.hero-dots {
+  position: absolute;
+  bottom: 100px;
+  right: 2.5rem;
+  z-index: 3;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  opacity: 0;
+  animation: fadeUp 0.6s 1.2s ease forwards;
+}
+.hero-dot {
+  width: 4px;
+  height: 4px;
+  border-radius: 50%;
+  background: rgba(255,255,255,0.3);
+  transition: background 0.3s, transform 0.3s;
+}
+.hero-dot.active {
+  background: var(--gold);
+  transform: scale(1.6);
 }
 
 /* ─── TICKER ─────────────────────────────────── */
@@ -525,7 +583,7 @@ header.scrolled {
 .parallax-bg {
   position: absolute;
   inset: -60px 0;
-  background-image: url('https://images.unsplash.com/photo-1574943320219-553eb213f72d?w=1800&q=80');
+  background-image: url('con5.jpg');
   background-size: cover;
   background-position: center;
   background-attachment: fixed;
@@ -915,6 +973,7 @@ footer {
   .vc-header p { text-align: left; }
   .stats-inner { grid-template-columns: repeat(2, 1fr); }
   .info-cards { grid-template-columns: 1fr; }
+  .hero-dots { display: none; }
 }
 </style>
 </head>
@@ -945,8 +1004,37 @@ footer {
 
 <!-- ═══ HERO ════════════════════════════════════════ -->
 <section class="hero" id="home">
-  <div class="hero-bg"></div>
+
+  <!-- Slideshow: 10 local images, sliding left→right -->
+  <div class="hero-slideshow">
+    <div class="hero-slide" style="background-image:url('con1.jpg')"></div>
+    <div class="hero-slide" style="background-image:url('con2.jpg')"></div>
+    <div class="hero-slide" style="background-image:url('con3.jpg')"></div>
+    <div class="hero-slide" style="background-image:url('con4.jpg')"></div>
+    <div class="hero-slide" style="background-image:url('con5.jpg')"></div>
+    <div class="hero-slide" style="background-image:url('con6.jpg')"></div>
+    <div class="hero-slide" style="background-image:url('con7.jpg')"></div>
+    <div class="hero-slide" style="background-image:url('con8.jpg')"></div>
+    <div class="hero-slide" style="background-image:url('con9.jpg')"></div>
+    <div class="hero-slide" style="background-image:url('con10.jpg')"></div>
+  </div>
+
   <div class="hero-overlay"></div>
+
+  <!-- Slide indicator dots -->
+  <div class="hero-dots" id="hero-dots">
+    <div class="hero-dot active" data-index="0"></div>
+    <div class="hero-dot" data-index="1"></div>
+    <div class="hero-dot" data-index="2"></div>
+    <div class="hero-dot" data-index="3"></div>
+    <div class="hero-dot" data-index="4"></div>
+    <div class="hero-dot" data-index="5"></div>
+    <div class="hero-dot" data-index="6"></div>
+    <div class="hero-dot" data-index="7"></div>
+    <div class="hero-dot" data-index="8"></div>
+    <div class="hero-dot" data-index="9"></div>
+  </div>
+
   <div class="hero-content container">
     <div class="hero-eyebrow">
       <div class="eyebrow-bar"></div>
@@ -968,6 +1056,7 @@ footer {
       <a href="#about" class="btn-ghost-white">Learn About Us</a>
     </div>
   </div>
+
   <div class="hero-stats-bar">
     <div class="stats-inner">
       <div class="stat-cell">
@@ -1063,14 +1152,14 @@ footer {
       </div>
       <div class="about-images reveal" style="transition-delay:0.15s;">
         <div class="about-img tall">
-          <img src="https://images.unsplash.com/photo-1559827260-dc66d52bef19?w=600&q=80" alt="Farmers working together in Uganda">
+          <img src="con1.jpg" alt="Farmers working together in Uganda">
           <div class="about-badge">Kasese District<span>Rwenzori Region, Uganda</span></div>
         </div>
         <div class="about-img">
-          <img src="https://images.unsplash.com/photo-1464226184884-fa280b87c399?w=400&q=80" alt="Maize harvest">
+          <img src="con2.jpg" alt="Maize harvest">
         </div>
         <div class="about-img">
-          <img src="https://images.unsplash.com/photo-1530836369250-ef72a3f5cda8?w=400&q=80" alt="Organic honey production">
+          <img src="con3.jpg" alt="Organic honey production">
         </div>
       </div>
     </div>
@@ -1237,7 +1326,7 @@ footer {
       </div>
       <div class="obj-right reveal" style="transition-delay:0.15s;">
         <div class="obj-image-wrap">
-          <img src="https://images.unsplash.com/photo-1625246333195-78d9c38ad449?w=700&q=80" alt="Agricultural community Uganda">
+          <img src="con6.jpg" alt="Agricultural community Uganda">
         </div>
         <div class="info-cards">
           <div class="info-card">
@@ -1268,11 +1357,11 @@ footer {
 
 <!-- ═══ GALLERY STRIP ═════════════════════════════════ -->
 <div class="gallery-strip" aria-hidden="true">
-  <div class="gallery-strip-img"><img src="https://images.unsplash.com/photo-1586771107445-d3ca888129ff?w=400&q=80" alt="Ugandan farm landscape"></div>
-  <div class="gallery-strip-img"><img src="https://images.unsplash.com/photo-1518977956812-cd3dbadaaf31?w=400&q=80" alt="Honey harvest"></div>
-  <div class="gallery-strip-img"><img src="https://images.unsplash.com/photo-1521587760476-6c12a4b040da?w=400&q=80" alt="Cattle dairy"></div>
-  <div class="gallery-strip-img"><img src="https://images.unsplash.com/photo-1606787620819-8bdd83f3add0?w=400&q=80" alt="Agricultural produce market"></div>
-  <div class="gallery-strip-img"><img src="https://images.unsplash.com/photo-1574943320219-553eb213f72d?w=400&q=80" alt="Community farmers"></div>
+  <div class="gallery-strip-img"><img src="con6.jpg" alt="BBUFC farm landscape"></div>
+  <div class="gallery-strip-img"><img src="con7.jpg" alt="BBUFC honey harvest"></div>
+  <div class="gallery-strip-img"><img src="con8.jpg" alt="BBUFC cattle dairy"></div>
+  <div class="gallery-strip-img"><img src="con9.jpg" alt="BBUFC agricultural produce"></div>
+  <div class="gallery-strip-img"><img src="con10.jpg" alt="BBUFC community farmers"></div>
 </div>
 
 <!-- ═══ CTA ═══════════════════════════════════════════ -->
@@ -1385,7 +1474,6 @@ footer {
   window.addEventListener('scroll', () => {
     header.classList.toggle('scrolled', window.scrollY > 50);
   });
-  // Trigger on load in case page is already scrolled
   header.classList.toggle('scrolled', window.scrollY > 50);
 
   // Scroll reveal
@@ -1400,7 +1488,7 @@ footer {
   }, { threshold: 0.12 });
   reveals.forEach(el => observer.observe(el));
 
-  // Hamburger toggle (basic)
+  // Hamburger toggle
   function toggleMenu(btn) {
     const menu = document.querySelector('.nav-menu');
     const open = menu.style.display === 'flex';
@@ -1415,6 +1503,22 @@ footer {
     menu.style.gap = '1.2rem';
     if (open) { menu.style.display = 'none'; }
   }
+
+  // Slideshow dot tracker
+  // Each slide is active for 6s out of the 60s cycle
+  const SLIDE_DURATION = 6000; // ms per slide
+  const TOTAL_SLIDES = 10;
+  const dots = document.querySelectorAll('.hero-dot');
+
+  function updateDots(index) {
+    dots.forEach((d, i) => d.classList.toggle('active', i === index));
+  }
+
+  let currentSlide = 0;
+  setInterval(() => {
+    currentSlide = (currentSlide + 1) % TOTAL_SLIDES;
+    updateDots(currentSlide);
+  }, SLIDE_DURATION);
 </script>
 </body>
 </html>
