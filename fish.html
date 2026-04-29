@@ -90,16 +90,11 @@ header {
 }
 .chain-hero-bg {
   position: absolute; inset: 0;
-  background: linear-gradient(135deg, #0a2a3a 0%, #0d4f5e 40%, #1a7a8a 80%, #0e2414 100%);
+  background-image: url('fish1.jpg');
+  background-size: cover;
+  background-position: center 40%;
   transform: scale(1.04);
   transition: transform 8s ease;
-}
-/* Decorative water ripple overlay */
-.chain-hero-bg::after {
-  content: '';
-  position: absolute; inset: 0;
-  background: radial-gradient(ellipse 80% 60% at 70% 50%, rgba(13,148,136,0.25) 0%, transparent 70%),
-              radial-gradient(ellipse 40% 40% at 20% 80%, rgba(26,110,138,0.3) 0%, transparent 60%);
 }
 .chain-hero-bg.loaded { transform: scale(1); }
 .chain-hero-overlay {
@@ -197,15 +192,6 @@ header {
 .ov-img img { width: 100%; height: 100%; object-fit: cover; transition: transform 0.5s; }
 .ov-img:hover img { transform: scale(1.05); }
 .ov-img.tall { grid-row: 1 / 3; }
-.ov-img.accent {
-  background: #0b2a3a;
-  display: flex; flex-direction: column;
-  align-items: center; justify-content: center;
-  padding: 1.5rem; text-align: center; gap: 0.5rem;
-}
-.ov-img.accent .acc-num { font-family: 'Cormorant Garamond', serif; font-size: 2.8rem; font-weight: 700; color: var(--fish-light); line-height: 1; }
-.ov-img.accent .acc-label { font-size: 12px; color: rgba(255,255,255,0.5); letter-spacing: 1px; text-transform: uppercase; font-weight: 300; }
-
 /* ─── CHAIN FLOW ─────────────────────────────── */
 .flow-section { padding: 6rem 0; background: var(--cream); }
 .flow-header { margin-bottom: 3.5rem; }
@@ -276,8 +262,7 @@ header {
 .inputs-section { padding: 6rem 0; background: var(--white); }
 .inputs-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 5rem; align-items: start; }
 .inputs-image-col { position: sticky; top: 7rem; }
-.inputs-image-wrap { border-radius: 20px; overflow: hidden; height: 400px; position: relative; background: linear-gradient(145deg, #0a2a3a, #1a6e8a); display: flex; align-items: center; justify-content: center; }
-.inputs-fish-art { font-size: 8rem; opacity: 0.18; }
+.inputs-image-wrap { border-radius: 20px; overflow: hidden; height: 400px; position: relative; }
 .inputs-image-label {
   position: absolute; bottom: 16px; left: 16px; right: 16px;
   background: rgba(10,30,50,0.9); backdrop-filter: blur(8px);
@@ -343,16 +328,6 @@ header {
 .fkpi { text-align: center; }
 .fkpi-num { font-family: 'Cormorant Garamond', serif; font-size: 2.4rem; font-weight: 700; color: var(--fish-light); line-height: 1; }
 .fkpi-label { font-size: 10px; color: rgba(255,255,255,0.4); text-transform: uppercase; letter-spacing: 1px; margin-top: 4px; }
-
-/* ─── GALLERY ────────────────────────────────── */
-.gallery-section { padding: 5rem 0; background: var(--cream-dark); }
-.gallery-header { display: flex; justify-content: space-between; align-items: flex-end; margin-bottom: 2rem; flex-wrap: wrap; gap: 1rem; }
-.gallery-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 10px; }
-.gal-img { border-radius: 14px; overflow: hidden; height: 200px; background: linear-gradient(135deg, #0a2a3a, #1a6e8a); display: flex; align-items: center; justify-content: center; }
-.gal-img.tall { grid-row: span 2; height: 100%; }
-.gal-placeholder { font-size: 3rem; opacity: 0.3; }
-.gal-img img { width: 100%; height: 100%; object-fit: cover; transition: transform 0.5s, filter 0.5s; filter: brightness(0.88) saturate(0.9); }
-.gal-img:hover img { transform: scale(1.06); filter: brightness(1) saturate(1.05); }
 
 /* ─── CTA ────────────────────────────────────── */
 .cta-section { padding: 5.5rem 0; background: #071e2c; text-align: center; }
@@ -558,16 +533,9 @@ footer { background: var(--green-deep); color: rgba(255,255,255,0.5); padding: 0
         <p>Our goal is to strengthen the aquaculture sector in Kasese, ensure reliable supply of quality fish, and provide smallholder fish farmers with access to better inputs, infrastructure and fair market prices.</p>
       </div>
       <div class="overview-images reveal" style="transition-delay:0.15s;">
-        <div class="ov-img tall" style="background: linear-gradient(145deg,#0a2a3a,#1a6e8a); display:flex; align-items:center; justify-content:center;">
-          <span style="font-size:5rem; opacity:0.4;">🐟</span>
-        </div>
-        <div class="ov-img" style="background: linear-gradient(145deg,#0b3a4a,#0d9488); display:flex; align-items:center; justify-content:center;">
-          <span style="font-size:3rem; opacity:0.4;">🏊</span>
-        </div>
-        <div class="ov-img accent">
-          <div class="acc-num">154</div>
-          <div class="acc-label">Fish ponds active</div>
-        </div>
+        <div class="ov-img tall"><img src="fish1.jpg" alt="Fish farming Kasese Uganda"></div>
+        <div class="ov-img"><img src="fish2.jpg" alt="Fish ponds Kasese"></div>
+        <div class="ov-img"><img src="fish3.jpg" alt="Farmers at work"></div>
       </div>
     </div>
   </div>
@@ -654,7 +622,7 @@ footer { background: var(--green-deep); color: rgba(255,255,255,0.5); padding: 0
     <div class="inputs-grid">
       <div class="inputs-image-col reveal">
         <div class="inputs-image-wrap">
-          <div class="inputs-fish-art">🐠</div>
+          <img src="fish2.jpg" alt="Fish farming infrastructure Uganda" style="width:100%;height:100%;object-fit:cover;">
           <div class="inputs-image-label">
             <strong>Investment Priority Areas</strong>
             <span>Required to improve fish quality &amp; increase output across the chain</span>
@@ -788,24 +756,6 @@ footer { background: var(--green-deep); color: rgba(255,255,255,0.5); padding: 0
   </div>
 </div>
 
-<!-- ═══ GALLERY ════════════════════════════════════════ -->
-<section class="gallery-section">
-  <div class="container">
-    <div class="gallery-header reveal">
-      <div>
-        <div class="section-tag"><span class="tag-rule"></span>In the Field</div>
-        <h2 class="section-title">Fish farming in action</h2>
-      </div>
-    </div>
-    <div class="gallery-grid reveal" style="transition-delay:0.1s;">
-      <div class="gal-img tall"><div class="gal-placeholder">🐟</div></div>
-      <div class="gal-img"><div class="gal-placeholder">🏊</div></div>
-      <div class="gal-img"><div class="gal-placeholder">🎣</div></div>
-      <div class="gal-img"><div class="gal-placeholder">🐠</div></div>
-      <div class="gal-img"><div class="gal-placeholder">💧</div></div>
-    </div>
-  </div>
-</section>
 
 <!-- ═══ CTA ═══════════════════════════════════════════ -->
 <section class="cta-section">
@@ -903,7 +853,7 @@ footer { background: var(--green-deep); color: rgba(255,255,255,0.5); padding: 0
   <div class="footer-lower">
     <div class="container">
       <div class="footer-lower-inner">
-        <span class="footer-copy">© 2025 Basongora-Bakonzo United Farmers Consortium. All rights reserved.</span>
+        <span class="footer-copy">© 2026 Basongora-Bakonzo United Farmers Consortium. All rights reserved.</span>
         <span class="footer-reg">Reg. No. 80034385952721 · Company Limited by Guarantee</span>
       </div>
     </div>
