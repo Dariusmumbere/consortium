@@ -915,6 +915,70 @@
     to { opacity: 1; }
   }
 
+  /* ── PHOTO SECTIONS ── */
+  .photo-feature {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+  }
+
+  .photo-feature-img {
+    position: relative;
+    overflow: hidden;
+    min-height: 460px;
+  }
+
+  .photo-feature-img img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+    transition: transform 0.7s ease;
+  }
+
+  .photo-feature-img:hover img { transform: scale(1.04); }
+
+  .photo-feature-img .photo-overlay {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(to top, rgba(45,74,45,0.7) 0%, transparent 60%);
+    pointer-events: none;
+  }
+
+  .photo-feature-img .photo-caption {
+    position: absolute;
+    bottom: 28px; left: 28px;
+    font-family: 'DM Mono', monospace;
+    font-size: 10px;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--gold);
+  }
+
+  .photo-feature-content {
+    background: var(--earth);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding: 72px 64px;
+  }
+
+  .photo-feature-content.light {
+    background: var(--cream);
+  }
+
+  .photo-feature-content .section-tag { color: var(--gold); }
+  .photo-feature-content .section-title { color: var(--cream); margin-bottom: 16px; }
+  .photo-feature-content.light .section-title { color: var(--earth); }
+  .photo-feature-content .section-body { color: rgba(247,242,232,0.65); margin-bottom: 0; }
+  .photo-feature-content.light .section-body { color: var(--earth-mid); }
+
+  @media (max-width: 900px) {
+    .photo-feature { grid-template-columns: 1fr; }
+    .photo-feature-img { min-height: 300px; }
+    .photo-feature-content { padding: 48px 24px; }
+    .photo-feature.reverse .photo-feature-img { order: -1; }
+  }
+
   /* ── SCROLL REVEALS ── */
   .reveal {
     opacity: 0;
@@ -1223,6 +1287,32 @@
   </div>
 </section>
 
+<!-- PHOTO FEATURE 1: Handcraft / Weaving -->
+<div class="photo-feature">
+  <div class="photo-feature-img reveal">
+    <img src="mov1.jpg" alt="MOVFACOS woman weaving baskets — handcraft program, Kasese Uganda">
+    <div class="photo-overlay"></div>
+    <div class="photo-caption">Handcraft Program · Kasese, Uganda</div>
+  </div>
+  <div class="photo-feature-content reveal">
+    <div class="section-tag">Women's Empowerment</div>
+    <h2 class="section-title">Hands That<br><em style="color:var(--gold);">Build Futures</em></h2>
+    <p class="section-body">
+      Through our vocational handcraft training program, women across Kasese are learning basket weaving, tailoring, knitting, and artisanal crafts — transforming traditional skills into sustainable household income. MOVFACOS provides tools, market linkages, and mentorship so every artisan can thrive.
+    </p>
+    <div style="margin-top:32px;display:flex;gap:32px;">
+      <div>
+        <div style="font-family:'Playfair Display',serif;font-size:32px;font-weight:700;color:var(--gold);">500+</div>
+        <div style="font-size:11px;letter-spacing:0.12em;text-transform:uppercase;color:rgba(247,242,232,0.45);margin-top:4px;">Women Trained</div>
+      </div>
+      <div>
+        <div style="font-family:'Playfair Display',serif;font-size:32px;font-weight:700;color:var(--gold);">25</div>
+        <div style="font-size:11px;letter-spacing:0.12em;text-transform:uppercase;color:rgba(247,242,232,0.45);margin-top:4px;">Community Groups</div>
+      </div>
+    </div>
+  </div>
+</div>
+
 <!-- PARTNERS -->
 <section class="partners" id="partners">
   <div class="section-tag reveal">Collaborators</div>
@@ -1237,6 +1327,27 @@
     <div class="partner-chip">Kasese District Farmers Association</div>
   </div>
 </section>
+
+<!-- PHOTO FEATURE 2: Cocoa -->
+<div class="photo-feature reverse">
+  <div class="photo-feature-content light reveal">
+    <div class="section-tag">Premium Produce</div>
+    <h2 class="section-title" style="color:var(--earth);">Sun-Dried<br><em>Rwenzori Cocoa</em></h2>
+    <p class="section-body" style="color:var(--earth-mid);">
+      Our cocoa is carefully harvested, fermented, and sun-dried by smallholder farmers in the Rwenzori foothills. Collective procurement through MOVFACOS ensures farmers receive fair prices while buyers access traceable, high-quality beans direct from source. Every batch carries the story of the families who grew it.
+    </p>
+    <div style="margin-top:32px;display:flex;gap:16px;flex-wrap:wrap;">
+      <span style="background:var(--green-pale);border:1px solid rgba(45,74,45,0.2);color:var(--green);font-size:11px;letter-spacing:0.1em;text-transform:uppercase;padding:8px 16px;border-radius:2px;">Sun-Dried</span>
+      <span style="background:var(--green-pale);border:1px solid rgba(45,74,45,0.2);color:var(--green);font-size:11px;letter-spacing:0.1em;text-transform:uppercase;padding:8px 16px;border-radius:2px;">Traceable Origin</span>
+      <span style="background:var(--green-pale);border:1px solid rgba(45,74,45,0.2);color:var(--green);font-size:11px;letter-spacing:0.1em;text-transform:uppercase;padding:8px 16px;border-radius:2px;">Farmer-Owned</span>
+    </div>
+  </div>
+  <div class="photo-feature-img reveal">
+    <img src="mov2.jpg" alt="MOVFACOS cocoa drying — premium Rwenzori region cocoa beans, Kasese Uganda">
+    <div class="photo-overlay"></div>
+    <div class="photo-caption">Cocoa Drying · Rwenzori Region</div>
+  </div>
+</div>
 
 <!-- ACHIEVEMENTS -->
 <section class="achievements">
