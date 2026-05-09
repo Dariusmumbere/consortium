@@ -663,12 +663,13 @@
   .activities-header .section-tag { color: var(--gold); }
   .activities-header .section-title { color: var(--cream); }
 
+  /* Text-only activity cards (first 6) */
   .activities-grid {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
     gap: 16px;
     max-width: 1240px;
-    margin: 0 auto;
+    margin: 0 auto 60px;
   }
 
   .activity-card {
@@ -695,6 +696,114 @@
   }
 
   .activity-text { font-size: 13px; line-height: 1.7; color: rgba(247,242,232,0.6); }
+
+  /* ── ACTIVITY IMAGE GALLERY ── */
+  .activities-gallery-label {
+    max-width: 1240px;
+    margin: 0 auto 28px;
+  }
+
+  .activities-gallery-label-text {
+    font-family: 'DM Mono', monospace;
+    font-size: 11px;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: rgba(201,168,76,0.7);
+    display: flex;
+    align-items: center;
+    gap: 12px;
+  }
+
+  .activities-gallery-label-text::before {
+    content: '';
+    width: 32px; height: 1px;
+    background: rgba(201,168,76,0.5);
+  }
+
+  /* Masonry-style image grid */
+  .activities-image-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    grid-template-rows: auto;
+    gap: 12px;
+    max-width: 1240px;
+    margin: 0 auto;
+  }
+
+  /* Each image card */
+  .act-img-card {
+    position: relative;
+    border-radius: 4px;
+    overflow: hidden;
+    cursor: pointer;
+  }
+
+  /* Span variants for visual interest */
+  .act-img-card.span-2-col { grid-column: span 2; }
+  .act-img-card.span-2-row { grid-row: span 2; }
+
+  .act-img-card img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+    min-height: 220px;
+    transition: transform 0.6s ease;
+  }
+
+  .act-img-card.span-2-col img { min-height: 260px; }
+  .act-img-card.span-2-row img { min-height: 460px; }
+
+  .act-img-card:hover img { transform: scale(1.05); }
+
+  /* Overlay on hover */
+  .act-img-overlay {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(to top, rgba(45,74,45,0.88) 0%, rgba(45,74,45,0.1) 55%, transparent 100%);
+    opacity: 0;
+    transition: opacity 0.4s ease;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    padding: 20px;
+  }
+
+  .act-img-card:hover .act-img-overlay { opacity: 1; }
+
+  /* Always-visible bottom label strip */
+  .act-img-label {
+    position: absolute;
+    bottom: 0; left: 0; right: 0;
+    background: linear-gradient(to top, rgba(20,36,20,0.85) 0%, transparent 100%);
+    padding: 28px 16px 14px;
+    pointer-events: none;
+  }
+
+  .act-img-label-tag {
+    font-family: 'DM Mono', monospace;
+    font-size: 10px;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--gold);
+    display: block;
+    margin-bottom: 3px;
+  }
+
+  .act-img-label-title {
+    font-family: 'Playfair Display', serif;
+    font-size: 14px;
+    font-weight: 700;
+    color: var(--cream);
+    line-height: 1.3;
+  }
+
+  .act-img-overlay-desc {
+    font-size: 12px;
+    color: rgba(247,242,232,0.8);
+    line-height: 1.6;
+    margin-top: 6px;
+  }
 
   /* ── PARTNERS ── */
   .partners {
@@ -1008,6 +1117,9 @@
     .mission-item { border-right: none; border-bottom: 1px solid rgba(201,168,76,0.2); }
     .activities { padding: 60px 24px; }
     .activities-grid { grid-template-columns: 1fr 1fr; }
+    .activities-image-grid { grid-template-columns: 1fr 1fr; }
+    .act-img-card.span-2-col { grid-column: span 2; }
+    .act-img-card.span-2-row { grid-row: span 1; }
     .partners { padding: 60px 24px; }
     .achievements { padding: 60px 24px; }
     .achievements-right { grid-template-columns: 1fr; }
@@ -1016,6 +1128,11 @@
     .cta-buttons { flex-direction: column; align-items: center; }
     footer { flex-direction: column; gap: 16px; padding: 32px 24px; text-align: center; }
     .products-header { flex-direction: column; gap: 20px; margin-bottom: 40px; }
+  }
+
+  @media (max-width: 600px) {
+    .activities-image-grid { grid-template-columns: 1fr; }
+    .act-img-card.span-2-col { grid-column: span 1; }
   }
 </style>
 </head>
@@ -1253,6 +1370,8 @@
     <div class="section-tag">What We Do</div>
     <h2 class="section-title">Programs &<br><em style="color:var(--gold-light);">Activities</em></h2>
   </div>
+
+  <!-- Activity description cards -->
   <div class="activities-grid">
     <div class="activity-card reveal">
       <div class="activity-icon">🌾</div>
@@ -1285,6 +1404,188 @@
       <div class="activity-text">Beekeeping and honey processing near Queen Elizabeth National Park, generating income and supporting pollinator ecosystems.</div>
     </div>
   </div>
+
+  <!-- Activity Photo Gallery -->
+  <div class="activities-gallery-label reveal">
+    <div class="activities-gallery-label-text">Field Photography · Our Work in Action</div>
+  </div>
+
+  <div class="activities-image-grid reveal">
+
+    <!-- Row 1 -->
+    <!-- Mango — Fruit/Tree Nursery, span wide -->
+    <div class="act-img-card span-2-col">
+      <img src="mango.jpg" alt="Mango farming — MOVFACOS fruit tree nursery program, Kasese Uganda">
+      <div class="act-img-label">
+        <span class="act-img-label-tag">Tree Nursery</span>
+        <span class="act-img-label-title">Mango Cultivation</span>
+      </div>
+      <div class="act-img-overlay">
+        <span class="act-img-label-tag">Tree Nursery Program</span>
+        <span class="act-img-label-title">Mango Cultivation</span>
+        <p class="act-img-overlay-desc">Fruit tree nurseries promoting nutrition, environmental conservation, and household income across member farms.</p>
+      </div>
+    </div>
+
+    <!-- Cocoa 1 — Cocoa processing -->
+    <div class="act-img-card">
+      <img src="cocoa1.jpg" alt="Cocoa harvesting — MOVFACOS premium cocoa program, Rwenzori region">
+      <div class="act-img-label">
+        <span class="act-img-label-tag">Cash Crop</span>
+        <span class="act-img-label-title">Cocoa Harvest</span>
+      </div>
+      <div class="act-img-overlay">
+        <span class="act-img-label-tag">Premium Cocoa</span>
+        <span class="act-img-label-title">Cocoa Harvest</span>
+        <p class="act-img-overlay-desc">Traceable single-origin cocoa harvested by MOVFACOS smallholder farmers in the Rwenzori foothills.</p>
+      </div>
+    </div>
+
+    <!-- Vanilla 1 — Vanilla growing (tall card) -->
+    <div class="act-img-card span-2-row">
+      <img src="vanilla1.jpg" alt="Vanilla growing — MOVFACOS organic vanilla farmers, Kasese Uganda">
+      <div class="act-img-label">
+        <span class="act-img-label-tag">Flagship Crop</span>
+        <span class="act-img-label-title">Organic Vanilla</span>
+      </div>
+      <div class="act-img-overlay">
+        <span class="act-img-label-tag">Flagship Crop</span>
+        <span class="act-img-label-title">Organic Vanilla</span>
+        <p class="act-img-overlay-desc">Certified organic vanilla beans — the heart of MOVFACOS, grown and cured by our 2,551 member farmers.</p>
+      </div>
+    </div>
+
+    <!-- Row 2 -->
+    <!-- Cocoa drying -->
+    <div class="act-img-card">
+      <img src="cocoa.jpg" alt="Cocoa drying — MOVFACOS sun-dried cocoa, Rwenzori region Uganda">
+      <div class="act-img-label">
+        <span class="act-img-label-tag">Value Addition</span>
+        <span class="act-img-label-title">Cocoa Drying</span>
+      </div>
+      <div class="act-img-overlay">
+        <span class="act-img-label-tag">Post-Harvest</span>
+        <span class="act-img-label-title">Cocoa Drying</span>
+        <p class="act-img-overlay-desc">Sun-drying fermented cocoa beans to international quality standards for premium export markets.</p>
+      </div>
+    </div>
+
+    <!-- Vanilla 2 -->
+    <div class="act-img-card">
+      <img src="vanilla2.jpg" alt="Vanilla beans — MOVFACOS organic vanilla processing, Kasese Uganda">
+      <div class="act-img-label">
+        <span class="act-img-label-tag">Processing</span>
+        <span class="act-img-label-title">Vanilla Curing</span>
+      </div>
+      <div class="act-img-overlay">
+        <span class="act-img-label-tag">Vanilla Processing</span>
+        <span class="act-img-label-title">Vanilla Curing</span>
+        <p class="act-img-overlay-desc">Post-harvest vanilla bean curing and processing by trained MOVFACOS member farmers.</p>
+      </div>
+    </div>
+
+    <!-- Vanilla 3 — span wide -->
+    <div class="act-img-card span-2-col">
+      <img src="vanilla3.jpg" alt="Vanilla farming — MOVFACOS cooperative farmers in the field, Kasese Uganda">
+      <div class="act-img-label">
+        <span class="act-img-label-tag">Farmer Training</span>
+        <span class="act-img-label-title">Vanilla in the Field</span>
+      </div>
+      <div class="act-img-overlay">
+        <span class="act-img-label-tag">Farmer Training</span>
+        <span class="act-img-label-title">Vanilla in the Field</span>
+        <p class="act-img-overlay-desc">Hands-on agronomic training ensures our farmers apply best practices for maximum yield and quality.</p>
+      </div>
+    </div>
+
+    <!-- Row 3 -->
+    <!-- Sorghum — Cereals program -->
+    <div class="act-img-card">
+      <img src="sorghum.jpg" alt="Sorghum farming — MOVFACOS cereals program, Kasese Uganda">
+      <div class="act-img-label">
+        <span class="act-img-label-tag">Cereals</span>
+        <span class="act-img-label-title">Sorghum Farming</span>
+      </div>
+      <div class="act-img-overlay">
+        <span class="act-img-label-tag">Cereals Program</span>
+        <span class="act-img-label-title">Sorghum Farming</span>
+        <p class="act-img-overlay-desc">Collective sorghum procurement through MOVFACOS gives smallholders better market access and fairer prices.</p>
+      </div>
+    </div>
+
+    <!-- Vanilla 4 -->
+    <div class="act-img-card">
+      <img src="vanilla4.jpg" alt="Vanilla pods — MOVFACOS organic vanilla, Rwenzori foothills Uganda">
+      <div class="act-img-label">
+        <span class="act-img-label-tag">Organic Vanilla</span>
+        <span class="act-img-label-title">Vanilla Pods</span>
+      </div>
+      <div class="act-img-overlay">
+        <span class="act-img-label-tag">Flagship Product</span>
+        <span class="act-img-label-title">Vanilla Pods</span>
+        <p class="act-img-overlay-desc">Premium vanilla pods ready for curing — harvested from the rich soils of the Rwenzori foothills.</p>
+      </div>
+    </div>
+
+    <!-- Vanilla 5 — span tall -->
+    <div class="act-img-card span-2-row">
+      <img src="vanilla5.jpg" alt="Vanilla harvest — MOVFACOS cooperative vanilla farmers, Western Uganda">
+      <div class="act-img-label">
+        <span class="act-img-label-tag">Harvest Season</span>
+        <span class="act-img-label-title">Vanilla Harvest</span>
+      </div>
+      <div class="act-img-overlay">
+        <span class="act-img-label-tag">Harvest Season</span>
+        <span class="act-img-label-title">Vanilla Harvest</span>
+        <p class="act-img-overlay-desc">MOVFACOS farmers during the vanilla harvest season — the cooperative's most celebrated time of year.</p>
+      </div>
+    </div>
+
+    <!-- Passion Fruit -->
+    <div class="act-img-card span-2-col">
+      <img src="passion1.jpg" alt="Passion fruit farming — MOVFACOS diversified agriculture, Kasese Uganda">
+      <div class="act-img-label">
+        <span class="act-img-label-tag">Diversification</span>
+        <span class="act-img-label-title">Passion Fruit</span>
+      </div>
+      <div class="act-img-overlay">
+        <span class="act-img-label-tag">Crop Diversification</span>
+        <span class="act-img-label-title">Passion Fruit Farming</span>
+        <p class="act-img-overlay-desc">Diversified fruit farming strengthens household nutrition and opens new market opportunities for MOVFACOS members.</p>
+      </div>
+    </div>
+
+    <!-- Row 4 -->
+    <!-- Vanilla 6 -->
+    <div class="act-img-card">
+      <img src="vanilla6.jpg" alt="Vanilla vines — MOVFACOS organic vanilla cultivation, Kasese Uganda">
+      <div class="act-img-label">
+        <span class="act-img-label-tag">Cultivation</span>
+        <span class="act-img-label-title">Vanilla Vines</span>
+      </div>
+      <div class="act-img-overlay">
+        <span class="act-img-label-tag">Organic Cultivation</span>
+        <span class="act-img-label-title">Vanilla Vines</span>
+        <p class="act-img-overlay-desc">Vanilla vines trained on shade trees — a signature sight across MOVFACOS member farms in Kasese.</p>
+      </div>
+    </div>
+
+    <!-- Sorghum 2 — span wide -->
+    <div class="act-img-card span-2-col">
+      <img src="sorghum2.jpg" alt="Sorghum field — MOVFACOS collective cereals procurement, Western Uganda">
+      <div class="act-img-label">
+        <span class="act-img-label-tag">Cereals Program</span>
+        <span class="act-img-label-title">Sorghum Fields</span>
+      </div>
+      <div class="act-img-overlay">
+        <span class="act-img-label-tag">Collective Procurement</span>
+        <span class="act-img-label-title">Sorghum Fields</span>
+        <p class="act-img-overlay-desc">Expansive sorghum fields managed collectively, reducing costs and improving quality across 25 farmer groups.</p>
+      </div>
+    </div>
+
+  </div><!-- end .activities-image-grid -->
+
 </section>
 
 <!-- PHOTO FEATURE 1: Handcraft / Weaving -->
