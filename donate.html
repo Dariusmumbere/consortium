@@ -32,9 +32,7 @@
     overflow-x: hidden;
   }
 
-  /* ══════════════════════════════
-     NAV
-  ══════════════════════════════ */
+  /* NAV */
   nav {
     position: fixed;
     top: 0; left: 0; right: 0;
@@ -187,9 +185,7 @@
   .nav-mobile-links .mobile-cta { color: var(--green) !important; font-weight: 600; }
   .nav-mobile-links .mobile-donate { color: var(--gold) !important; font-weight: 700; }
 
-  /* ══════════════════════════════
-     PAGE HERO
-  ══════════════════════════════ */
+  /* PAGE HERO */
   .page-hero {
     background: var(--green);
     padding: 148px 80px 88px;
@@ -278,7 +274,6 @@
     animation: fadeUp 0.8s 0.6s ease forwards;
   }
 
-  /* Hero right trust marks */
   .hero-right {
     opacity: 0;
     animation: fadeUp 0.8s 0.7s ease forwards;
@@ -333,9 +328,7 @@
     border-radius: 3px;
   }
 
-  /* ══════════════════════════════
-     TICKER
-  ══════════════════════════════ */
+  /* TICKER */
   .ticker {
     background: var(--gold);
     padding: 11px 0;
@@ -368,9 +361,7 @@
     to { transform: translateX(-50%); }
   }
 
-  /* ══════════════════════════════
-     DONATE BODY
-  ══════════════════════════════ */
+  /* DONATE BODY */
   .donate-body {
     max-width: 1200px;
     margin: 0 auto;
@@ -381,9 +372,7 @@
     align-items: start;
   }
 
-  /* ══════════════════════════════
-     FORM PANEL (left)
-  ══════════════════════════════ */
+  /* FORM PANEL */
   .form-panel {
     position: relative;
   }
@@ -425,7 +414,6 @@
     max-width: 520px;
   }
 
-  /* Amount selector */
   .amount-section { margin-bottom: 32px; }
 
   .field-label {
@@ -512,9 +500,7 @@
     transition: border-color 0.2s;
   }
 
-  .custom-amount-input:focus {
-    border-color: var(--gold);
-  }
+  .custom-amount-input:focus { border-color: var(--gold); }
 
   .custom-amount-input::placeholder {
     color: rgba(61,43,31,0.25);
@@ -523,7 +509,6 @@
     font-weight: 400;
   }
 
-  /* Frequency selector */
   .frequency-section { margin-bottom: 32px; }
 
   .frequency-tabs {
@@ -557,11 +542,8 @@
     font-weight: 500;
   }
 
-  .freq-tab:hover:not(.active) {
-    background: rgba(201,168,76,0.07);
-  }
+  .freq-tab:hover:not(.active) { background: rgba(201,168,76,0.07); }
 
-  /* Project allocation */
   .project-section { margin-bottom: 32px; }
 
   .project-select {
@@ -584,7 +566,6 @@
 
   .project-select:focus { border-color: var(--gold); }
 
-  /* Donor details */
   .donor-section { margin-bottom: 32px; }
 
   .input-row {
@@ -622,10 +603,8 @@
   }
 
   .input-field:focus { border-color: var(--gold); }
-
   .input-field::placeholder { color: rgba(61,43,31,0.3); }
 
-  /* Message field */
   .message-section { margin-bottom: 36px; }
 
   .textarea-field {
@@ -646,7 +625,6 @@
   .textarea-field:focus { border-color: var(--gold); }
   .textarea-field::placeholder { color: rgba(61,43,31,0.3); }
 
-  /* Anonymous checkbox */
   .anon-row {
     display: flex;
     align-items: center;
@@ -667,7 +645,6 @@
     cursor: pointer;
   }
 
-  /* Summary bar */
   .donation-summary {
     background: var(--earth);
     border-radius: 3px;
@@ -717,7 +694,6 @@
     text-align: right;
   }
 
-  /* Submit button */
   .submit-btn {
     width: 100%;
     background: var(--gold);
@@ -746,6 +722,7 @@
   }
 
   .submit-btn:active { transform: translateY(0); }
+  .submit-btn:disabled { opacity: 0.6; cursor: not-allowed; transform: none; }
 
   .submit-btn-icon { font-size: 18px; }
 
@@ -770,7 +747,6 @@
     background: rgba(61,43,31,0.15);
   }
 
-  /* Pesapal branding */
   .pesapal-note {
     margin-top: 16px;
     padding: 14px 18px;
@@ -816,9 +792,7 @@
     color: var(--earth-mid);
   }
 
-  /* ══════════════════════════════
-     SIDEBAR (right)
-  ══════════════════════════════ */
+  /* SIDEBAR */
   .sidebar {
     position: sticky;
     top: 100px;
@@ -854,9 +828,7 @@
     line-height: 1.2;
   }
 
-  .impact-tiers {
-    padding: 8px 0;
-  }
+  .impact-tiers { padding: 8px 0; }
 
   .impact-tier {
     padding: 16px 24px;
@@ -901,7 +873,6 @@
     margin-bottom: 2px;
   }
 
-  /* Progress bar */
   .sidebar-progress {
     background: var(--white);
     border: 1px solid rgba(201,168,76,0.2);
@@ -939,7 +910,7 @@
     height: 100%;
     background: linear-gradient(90deg, var(--green), var(--green-light));
     border-radius: 100px;
-    width: 63%;
+    width: 0%;
     transition: width 1.2s ease;
   }
 
@@ -973,7 +944,6 @@
     margin-top: 8px;
   }
 
-  /* Recent donors */
   .sidebar-recent {
     background: var(--white);
     border: 1px solid rgba(201,168,76,0.15);
@@ -1028,9 +998,7 @@
     color: var(--green);
   }
 
-  /* ══════════════════════════════
-     PROCESSING OVERLAY
-  ══════════════════════════════ */
+  /* PROCESSING OVERLAY */
   .processing-overlay {
     display: none;
     position: fixed;
@@ -1042,9 +1010,7 @@
     justify-content: center;
   }
 
-  .processing-overlay.active {
-    display: flex;
-  }
+  .processing-overlay.active { display: flex; }
 
   .processing-box {
     background: var(--earth);
@@ -1081,9 +1047,7 @@
     line-height: 1.7;
   }
 
-  /* ══════════════════════════════
-     SUCCESS PANEL
-  ══════════════════════════════ */
+  /* SUCCESS PANEL */
   .success-panel {
     display: none;
     max-width: 640px;
@@ -1147,9 +1111,7 @@
     display: inline-block;
   }
 
-  /* ══════════════════════════════
-     ERROR PANEL
-  ══════════════════════════════ */
+  /* ERROR */
   .error-banner {
     display: none;
     background: #fdf2f0;
@@ -1164,9 +1126,7 @@
 
   .error-banner.active { display: block; }
 
-  /* ══════════════════════════════
-     FOOTER BAND + FOOTER
-  ══════════════════════════════ */
+  /* FOOTER */
   .projects-footer-band {
     background: var(--ink);
     padding: 64px 80px;
@@ -1260,9 +1220,6 @@
     color: rgba(247,242,232,0.25);
   }
 
-  /* ══════════════════════════════
-     ANIMATIONS
-  ══════════════════════════════ */
   @keyframes fadeUp {
     from { opacity: 0; transform: translateY(24px); }
     to { opacity: 1; transform: translateY(0); }
@@ -1279,9 +1236,6 @@
     transform: none;
   }
 
-  /* ══════════════════════════════
-     RESPONSIVE
-  ══════════════════════════════ */
   @media (max-width: 1000px) {
     .donate-body {
       grid-template-columns: 1fr;
@@ -1310,7 +1264,7 @@
 </head>
 <body>
 
-<!-- ══ NAV ══ -->
+<!-- NAV -->
 <nav id="main-nav">
   <div class="nav-inner">
     <a href="index.html" class="nav-logo">
@@ -1343,7 +1297,7 @@
   </div>
 </nav>
 
-<!-- ══ PAGE HERO ══ -->
+<!-- PAGE HERO -->
 <section class="page-hero">
   <div class="page-hero-inner">
     <div class="page-hero-left">
@@ -1378,7 +1332,7 @@
   </div>
 </section>
 
-<!-- ══ TICKER ══ -->
+<!-- TICKER -->
 <div class="ticker">
   <div class="ticker-inner">
     <span class="ticker-item">Organic Vanilla</span>
@@ -1404,7 +1358,7 @@
   </div>
 </div>
 
-<!-- ══ PROCESSING OVERLAY ══ -->
+<!-- PROCESSING OVERLAY -->
 <div class="processing-overlay" id="processing-overlay">
   <div class="processing-box">
     <div class="processing-spinner"></div>
@@ -1413,7 +1367,7 @@
   </div>
 </div>
 
-<!-- ══ DONATE BODY ══ -->
+<!-- DONATE BODY -->
 <div class="donate-body">
 
   <!-- LEFT: Donation Form -->
@@ -1668,7 +1622,7 @@
   </div>
 </div>
 
-<!-- ══ FOOTER BAND ══ -->
+<!-- FOOTER BAND -->
 <div class="projects-footer-band">
   <div class="projects-footer-inner">
     <div class="pf-band-label">MOVFACOS · Kasese, Uganda</div>
@@ -1677,7 +1631,7 @@
   </div>
 </div>
 
-<!-- ══ FOOTER ══ -->
+<!-- FOOTER -->
 <footer>
   <div class="footer-left">
     © 2026 MOVFACOS — Margharita Organic Vanilla Farmers Cooperative Society Ltd
@@ -1688,17 +1642,16 @@
 
 <script>
 // ══════════════════════════════
-//   PESAPAL CONFIGURATION
-//   ── SANDBOX ──  change to live when going live
+//   PESAPAL LIVE CONFIGURATION
 // ══════════════════════════════
 const PESAPAL_CONFIG = {
   consumerKey:    'MksndV0PkUIdbr9UQlfcwWv6oRO7XKBT',
   consumerSecret: 'pYv2srQPbqZHmhe06OwTFnqb6CE=',
-  // Sandbox endpoint — replace with https://pay.pesapal.com/v3 for production
-  baseUrl: 'https://cybqa.pesapal.com/pesapalv3',
+  // LIVE endpoint
+  baseUrl: 'https://pay.pesapal.com/v3',
   // Callback URL — update to your actual domain
   callbackUrl: window.location.origin + '/donate.html?status=success',
-  notificationUrl: window.location.origin + '/ipn', // your server IPN endpoint
+  notificationUrl: window.location.origin + '/ipn',
   currency: 'UGX',
   merchantName: 'MOVFACOS Uganda',
 };
@@ -1817,7 +1770,7 @@ reveals.forEach(el => observer.observe(el));
 
 // ══════════════════════════════
 //   PESAPAL PAYMENT INITIATION
-//   Uses Pesapal v3 API
+//   Pesapal v3 LIVE API
 // ══════════════════════════════
 async function initiateDonation() {
   hideError();
@@ -1837,19 +1790,19 @@ async function initiateDonation() {
   const anon    = document.getElementById('anon-check').checked;
 
   const projectLabels = {
-    general:       'General Fund',
-    beekeeping:    'Modern Beekeeping',
-    hairdressing:  'Youth Hairdressing',
-    'female-youth':'Female Youth Empowerment',
-    nursery:       'Tree Seedlings Nursery',
+    general:        'General Fund',
+    beekeeping:     'Modern Beekeeping',
+    hairdressing:   'Youth Hairdressing',
+    'female-youth': 'Female Youth Empowerment',
+    nursery:        'Tree Seedlings Nursery',
     'passion-fruit':'Export Passion Fruits',
-    savings:       'Women\'s Savings (VSLA)',
-    vanilla:       'Cured Vanilla Beans',
-    simsim:        'Sim Sim Farm Visitation',
-    'fish-ponds':  'Community Fish Ponds',
+    savings:        "Women's Savings (VSLA)",
+    vanilla:        'Cured Vanilla Beans',
+    simsim:         'Sim Sim Farm Visitation',
+    'fish-ponds':   'Community Fish Ponds',
   };
 
-  const orderRef = 'MOV-' + Date.now();
+  const orderRef  = 'MOV-' + Date.now();
   const description = `MOVFACOS Donation — ${projectLabels[project] || 'General'} (${selectedFreq})`;
 
   showProcessing();
@@ -1873,7 +1826,7 @@ async function initiateDonation() {
     const token = authData.token;
     if (!token) throw new Error('No token returned from Pesapal auth.');
 
-    // ── Step 2: Register IPN (can be cached, but safe to register each time for demo) ──
+    // ── Step 2: Register IPN ──
     let ipnId = '';
     try {
       const ipnRes = await fetch(`${PESAPAL_CONFIG.baseUrl}/api/URLSetup/RegisterIPN`, {
@@ -1884,7 +1837,7 @@ async function initiateDonation() {
           'Authorization': `Bearer ${token}`,
         },
         body: JSON.stringify({
-          url:          PESAPAL_CONFIG.notificationUrl,
+          url: PESAPAL_CONFIG.notificationUrl,
           ipn_notification_type: 'GET',
         }),
       });
@@ -1898,11 +1851,11 @@ async function initiateDonation() {
 
     // ── Step 3: Submit order ──
     const orderPayload = {
-      id:            orderRef,
-      currency:      PESAPAL_CONFIG.currency,
-      amount:        selectedAmount,
-      description:   description,
-      callback_url:  PESAPAL_CONFIG.callbackUrl + '&OrderMerchantReference=' + orderRef,
+      id:              orderRef,
+      currency:        PESAPAL_CONFIG.currency,
+      amount:          selectedAmount,
+      description:     description,
+      callback_url:    PESAPAL_CONFIG.callbackUrl + '&OrderMerchantReference=' + orderRef,
       notification_id: ipnId,
       billing_address: {
         email_address: email,
@@ -1940,7 +1893,6 @@ async function initiateDonation() {
     console.error('Pesapal error:', err);
     showError(
       'We could not connect to the payment gateway. ' +
-      'This may be a network issue or the sandbox may be offline. ' +
       'Please try again or contact us directly at movfacos@gmail.com. ' +
       '(Technical detail: ' + err.message + ')'
     );
