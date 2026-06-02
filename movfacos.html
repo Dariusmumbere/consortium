@@ -154,7 +154,7 @@
     border-top: 1px solid rgba(201,168,76,0.2);
   }
 
-  .nav-mobile-menu.open { max-height: 520px; }
+  .nav-mobile-menu.open { max-height: 560px; }
 
   .nav-mobile-links {
     list-style: none;
@@ -314,7 +314,6 @@
     overflow: hidden;
   }
 
-  /* Slideshow container */
   .hero-slideshow {
     position: absolute;
     inset: 0;
@@ -343,7 +342,6 @@
     background: linear-gradient(135deg, rgba(45,74,45,0.45) 0%, rgba(61,43,31,0.3) 100%);
   }
 
-  /* Slide caption */
   .hero-slide-caption {
     position: absolute;
     bottom: 32px;
@@ -378,7 +376,6 @@
     line-height: 1.3;
   }
 
-  /* Slide dots */
   .hero-slide-dots {
     position: absolute;
     bottom: 32px;
@@ -404,7 +401,6 @@
     transform: scale(1.4);
   }
 
-  /* Slide counter */
   .hero-slide-counter {
     position: absolute;
     top: 100px;
@@ -979,6 +975,247 @@
   }
 
   .health-benefit-text { font-size: 13px; line-height: 1.7; color: var(--earth-light); }
+
+  /* ── CLIMATE MITIGATION SECTION ── */
+  .climate {
+    background: var(--earth);
+    padding: 100px 80px;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .climate::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background:
+      radial-gradient(ellipse at 10% 30%, rgba(74,122,74,0.12) 0%, transparent 50%),
+      radial-gradient(ellipse at 90% 70%, rgba(201,168,76,0.08) 0%, transparent 50%);
+    pointer-events: none;
+  }
+
+  .climate-inner {
+    max-width: 1240px;
+    margin: 0 auto;
+    position: relative;
+    z-index: 2;
+  }
+
+  .climate-header {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 80px;
+    align-items: center;
+    margin-bottom: 72px;
+  }
+
+  .climate-header .section-tag { color: var(--gold); }
+  .climate-header .section-title { color: var(--cream); }
+  .climate-header .section-title em { color: var(--green-light); font-style: italic; }
+  .climate-header .section-body { color: rgba(247,242,232,0.65); }
+
+  .climate-stat-row {
+    display: flex;
+    gap: 40px;
+    margin-top: 36px;
+    flex-wrap: wrap;
+  }
+
+  .climate-stat {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .climate-stat-num {
+    font-family: 'Playfair Display', serif;
+    font-size: 38px;
+    font-weight: 700;
+    color: var(--green-light);
+    line-height: 1;
+  }
+
+  .climate-stat-label {
+    font-family: 'DM Mono', monospace;
+    font-size: 10px;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: rgba(247,242,232,0.4);
+    margin-top: 6px;
+  }
+
+  /* Video pair */
+  .climate-videos {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 20px;
+    margin-bottom: 48px;
+  }
+
+  .climate-video-card {
+    position: relative;
+    border-radius: 6px;
+    overflow: hidden;
+    background: #0e1a0e;
+    cursor: pointer;
+  }
+
+  .climate-video-card video {
+    width: 100%;
+    display: block;
+    aspect-ratio: 16/9;
+    object-fit: cover;
+    opacity: 0.72;
+    transition: opacity 0.4s ease;
+  }
+
+  .climate-video-card:hover video,
+  .climate-video-card.playing video {
+    opacity: 1;
+  }
+
+  .climate-video-overlay {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(to top, rgba(10,20,10,0.88) 0%, rgba(10,20,10,0.25) 55%, transparent 100%);
+    transition: background 0.4s ease;
+    pointer-events: none;
+  }
+
+  .climate-video-card.playing .climate-video-overlay {
+    background: linear-gradient(to top, rgba(10,20,10,0.6) 0%, transparent 50%);
+  }
+
+  /* Play / Pause button */
+  .climate-play-btn {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 64px;
+    height: 64px;
+    border-radius: 50%;
+    background: rgba(201,168,76,0.92);
+    border: none;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: transform 0.25s ease, background 0.25s ease, opacity 0.35s ease;
+    z-index: 3;
+    box-shadow: 0 8px 32px rgba(0,0,0,0.45);
+  }
+
+  .climate-play-btn svg {
+    width: 22px;
+    height: 22px;
+    fill: var(--earth);
+    transition: opacity 0.2s;
+  }
+
+  .climate-play-btn:hover {
+    background: var(--vanilla);
+    transform: translate(-50%, -50%) scale(1.1);
+  }
+
+  .climate-video-card.playing .climate-play-btn {
+    opacity: 0;
+    pointer-events: none;
+  }
+
+  .climate-video-card.playing:hover .climate-play-btn {
+    opacity: 1;
+    pointer-events: auto;
+  }
+
+  .climate-play-btn .icon-pause { display: none; }
+  .climate-video-card.playing .climate-play-btn .icon-play { display: none; }
+  .climate-video-card.playing .climate-play-btn .icon-pause { display: block; }
+
+  /* Caption area */
+  .climate-video-caption {
+    position: absolute;
+    bottom: 0; left: 0; right: 0;
+    padding: 28px 24px 20px;
+    z-index: 2;
+    pointer-events: none;
+  }
+
+  .climate-video-tag {
+    font-family: 'DM Mono', monospace;
+    font-size: 10px;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--gold);
+    display: block;
+    margin-bottom: 4px;
+  }
+
+  .climate-video-title {
+    font-family: 'Playfair Display', serif;
+    font-size: 17px;
+    font-weight: 700;
+    color: var(--cream);
+    line-height: 1.3;
+    margin-bottom: 6px;
+  }
+
+  .climate-video-desc {
+    font-size: 12px;
+    line-height: 1.6;
+    color: rgba(247,242,232,0.65);
+  }
+
+  /* Impact cards row */
+  .climate-impacts {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 2px;
+    margin-top: 8px;
+  }
+
+  .climate-impact-card {
+    background: rgba(247,242,232,0.04);
+    border: 1px solid rgba(201,168,76,0.12);
+    padding: 28px 22px;
+    transition: background 0.3s, border-color 0.3s;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .climate-impact-card::after {
+    content: '';
+    position: absolute;
+    bottom: 0; left: 0; right: 0;
+    height: 2px;
+    background: var(--green-light);
+    transform: scaleX(0);
+    transform-origin: left;
+    transition: transform 0.35s ease;
+  }
+
+  .climate-impact-card:hover {
+    background: rgba(74,122,74,0.08);
+    border-color: rgba(74,122,74,0.35);
+  }
+
+  .climate-impact-card:hover::after { transform: scaleX(1); }
+
+  .climate-impact-icon { font-size: 26px; margin-bottom: 14px; }
+
+  .climate-impact-title {
+    font-family: 'Playfair Display', serif;
+    font-size: 15px;
+    font-weight: 700;
+    color: var(--cream);
+    margin-bottom: 8px;
+    line-height: 1.3;
+  }
+
+  .climate-impact-text {
+    font-size: 12px;
+    line-height: 1.7;
+    color: rgba(247,242,232,0.5);
+  }
 
   /* ── FORUM SECTION ── */
   .forum {
@@ -1835,6 +2072,8 @@
     .health-benefits { grid-template-columns: 1fr 1fr; }
     .kampala-layout { grid-template-columns: 1fr; gap: 48px; }
     .kampala-img-main img { height: 360px; }
+    .climate-header { grid-template-columns: 1fr; gap: 40px; }
+    .climate-impacts { grid-template-columns: 1fr 1fr; }
   }
 
   @media (max-width: 900px) {
@@ -1870,6 +2109,10 @@
     .health-trees-grid { grid-template-columns: 1fr; }
     .health-img-main { grid-row: span 1; min-height: 280px; }
     .health-benefits { grid-template-columns: 1fr; }
+
+    .climate { padding: 60px 24px; }
+    .climate-videos { grid-template-columns: 1fr; gap: 16px; }
+    .climate-impacts { grid-template-columns: 1fr 1fr; }
 
     .forum { padding: 60px 24px; }
     .forum-details { grid-template-columns: 1fr; }
@@ -1915,6 +2158,8 @@
     .forum-details { grid-template-columns: 1fr; }
     .kampala-highlights { grid-template-columns: 1fr; }
     .health-trees-grid { grid-template-columns: 1fr; }
+    .climate-impacts { grid-template-columns: 1fr; }
+    .climate-stat-row { gap: 24px; }
   }
 </style>
 </head>
@@ -1931,6 +2176,7 @@
       <li><a href="#">Home</a></li>
       <li><a href="#about">Who We Are</a></li>
       <li><a href="#activities">Projects</a></li>
+      <li><a href="#climate">Climate</a></li>
       <li><a href="events.html">Events</a></li>
       <li><a href="gallery.html">Gallery</a></li>
       <li><a href="#contact" class="nav-cta">Contact Us</a></li>
@@ -1945,6 +2191,7 @@
       <li><a href="#" onclick="closeMenu()">Home</a></li>
       <li><a href="#about" onclick="closeMenu()">Who We Are</a></li>
       <li><a href="#activities" onclick="closeMenu()">Projects</a></li>
+      <li><a href="#climate" onclick="closeMenu()">Climate</a></li>
       <li><a href="events.html" onclick="closeMenu()">Events</a></li>
       <li><a href="#gallery" onclick="closeMenu()">Gallery</a></li>
       <li><a href="#contact" onclick="closeMenu()" class="mobile-cta">Contact Us</a></li>
@@ -1983,10 +2230,8 @@
     </div>
   </div>
 
-  <!-- Hero Right: Slideshow -->
   <div class="hero-right">
     <div class="hero-slideshow" id="heroSlideshow">
-
       <div class="hero-slide active">
         <img src="vanilla1.jpg" alt="Organic Vanilla — MOVFACOS Kasese Uganda">
         <div class="hero-slide-overlay"></div>
@@ -1995,7 +2240,6 @@
           <div class="hero-slide-caption-title">Certified Organic Vanilla</div>
         </div>
       </div>
-
       <div class="hero-slide">
         <img src="women.jpg" alt="Women farming passion fruit on Mt Rwenzori slopes — MOVFACOS Uganda">
         <div class="hero-slide-overlay"></div>
@@ -2004,16 +2248,14 @@
           <div class="hero-slide-caption-title">Passion Fruit on the Rwenzori Slopes</div>
         </div>
       </div>
-
       <div class="hero-slide">
         <img src="health.jpg" alt="Health and nutrition tree planting — MOVFACOS Uganda">
         <div class="hero-slide-overlay"></div>
         <div class="hero-slide-caption">
-          <span class="hero-slide-caption-tag">Environmental & Health</span>
-          <div class="hero-slide-caption-title">Tree Planting for Health & Environment</div>
+          <span class="hero-slide-caption-tag">Environmental &amp; Health</span>
+          <div class="hero-slide-caption-title">Tree Planting for Health &amp; Environment</div>
         </div>
       </div>
-
       <div class="hero-slide">
         <img src="kla.jpg" alt="MOVFACOS delegation meeting Prime Minister in Kampala Uganda">
         <div class="hero-slide-overlay"></div>
@@ -2022,7 +2264,6 @@
           <div class="hero-slide-caption-title">Meeting the Prime Minister — Kampala</div>
         </div>
       </div>
-
       <div class="hero-slide">
         <img src="cocoa1.jpg" alt="Cocoa Harvest — Rwenzori Region Uganda">
         <div class="hero-slide-overlay"></div>
@@ -2031,7 +2272,6 @@
           <div class="hero-slide-caption-title">Rwenzori Cocoa Harvest</div>
         </div>
       </div>
-
       <div class="hero-slide">
         <img src="mango.jpg" alt="Mango Nursery — MOVFACOS Uganda">
         <div class="hero-slide-overlay"></div>
@@ -2040,13 +2280,8 @@
           <div class="hero-slide-caption-title">Mango Cultivation Program</div>
         </div>
       </div>
-
     </div>
-
-    <!-- Slide dots -->
     <div class="hero-slide-dots" id="slideDots"></div>
-
-    <!-- Counter -->
     <div class="hero-slide-counter" id="slideCounter">
       <span id="slideCurrentNum">1</span> / <span id="slideTotalNum">6</span>
     </div>
@@ -2083,7 +2318,7 @@
   </div>
 </div>
 
-<!-- ABOUT / WHO WE ARE -->
+<!-- ABOUT -->
 <section class="about" id="about">
   <div class="reveal">
     <div class="section-tag">Our Story</div>
@@ -2213,7 +2448,7 @@
   <div class="mission-item reveal">
     <div class="mission-num">03</div>
     <div class="mission-icon">♀️</div>
-    <div class="mission-title">Gender & Inclusion</div>
+    <div class="mission-title">Gender &amp; Inclusion</div>
     <div class="mission-text">Women, youth, and persons with disabilities are central to our programs — from leadership in the executive committee to access to SACCO savings.</div>
   </div>
 </div>
@@ -2222,7 +2457,7 @@
 <section class="activities" id="activities">
   <div class="activities-header reveal">
     <div class="section-tag">What We Do</div>
-    <h2 class="section-title">Programs &<br><em style="color:var(--gold-light);">Activities</em></h2>
+    <h2 class="section-title">Programs &amp;<br><em style="color:var(--gold-light);">Activities</em></h2>
   </div>
 
   <div class="activities-grid">
@@ -2450,7 +2685,7 @@
     <div style="margin-top:32px;display:flex;gap:16px;flex-wrap:wrap;">
       <span style="background:var(--green-pale);border:1px solid rgba(45,74,45,0.2);color:var(--green);font-size:11px;letter-spacing:0.1em;text-transform:uppercase;padding:8px 16px;border-radius:2px;">Rwenzori Slopes</span>
       <span style="background:var(--green-pale);border:1px solid rgba(45,74,45,0.2);color:var(--green);font-size:11px;letter-spacing:0.1em;text-transform:uppercase;padding:8px 16px;border-radius:2px;">Women-Led</span>
-      <span style="background:var(--green-pale);border:1px solid rgba(45,74,45,0.2);color:var(--green);font-size:11px;letter-spacing:0.1em;text-transform:uppercase;padding:8px 16px;border-radius:2px;">Nutrition & Income</span>
+      <span style="background:var(--green-pale);border:1px solid rgba(45,74,45,0.2);color:var(--green);font-size:11px;letter-spacing:0.1em;text-transform:uppercase;padding:8px 16px;border-radius:2px;">Nutrition &amp; Income</span>
     </div>
   </div>
   <div class="photo-feature-img reveal">
@@ -2491,7 +2726,6 @@
       </div>
     </div>
 
-    <!-- Image pair -->
     <div class="health-trees-grid reveal">
       <div class="health-img-main">
         <img src="health.jpg" alt="Tree planting for health and environment — MOVFACOS Uganda">
@@ -2505,7 +2739,7 @@
         <img src="passion1.jpg" alt="Passion fruit — nutrition and income for MOVFACOS farmers, Uganda">
         <div class="health-img-overlay"></div>
         <div class="health-img-caption">
-          <span class="health-img-caption-tag">Nutrition & Income</span>
+          <span class="health-img-caption-tag">Nutrition &amp; Income</span>
           <div class="health-img-caption-title">Passion Fruit Cultivation</div>
         </div>
       </div>
@@ -2519,7 +2753,6 @@
       </div>
     </div>
 
-    <!-- Benefit cards -->
     <div class="health-benefits reveal">
       <div class="health-benefit-card">
         <div class="health-benefit-icon">🌿</div>
@@ -2528,7 +2761,7 @@
       </div>
       <div class="health-benefit-card">
         <div class="health-benefit-icon">🍎</div>
-        <div class="health-benefit-title">Nutrition & Food Security</div>
+        <div class="health-benefit-title">Nutrition &amp; Food Security</div>
         <div class="health-benefit-text">Fruit trees — mango, passion fruit, avocado, and papaya — provide year-round vitamins and minerals, directly improving household dietary diversity.</div>
       </div>
       <div class="health-benefit-card">
@@ -2552,6 +2785,117 @@
         <div class="health-benefit-text">Community-run tree nurseries give every farmer group ownership of seedling production, creating local green jobs and building lasting environmental stewardship.</div>
       </div>
     </div>
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════════════════════════ -->
+<!-- CLIMATE MITIGATION SECTION -->
+<!-- ═══════════════════════════════════════════════════════ -->
+<section class="climate" id="climate">
+  <div class="climate-inner">
+
+    <!-- Header -->
+    <div class="climate-header">
+      <div class="reveal">
+        <div class="section-tag">Environmental Stewardship</div>
+        <h2 class="section-title">Climate<br><em>Mitigation</em><br>in Action</h2>
+        <p class="section-body">
+          MOVFACOS farmers are active stewards of the Rwenzori landscape. From managing animal waste to nurturing dense forest cover, our cooperative directly tackles two of agriculture's biggest climate challenges — methane emissions and carbon sequestration — at the community level.
+        </p>
+        <p class="section-body">
+          By transforming livestock waste into biogas and compost, and by planting thousands of trees across member farms, MOVFACOS turns everyday farming practice into measurable climate action.
+        </p>
+        <div class="climate-stat-row">
+          <div class="climate-stat">
+            <div class="climate-stat-num">10k+</div>
+            <div class="climate-stat-label">Trees Planted</div>
+          </div>
+          <div class="climate-stat">
+            <div class="climate-stat-num">↓ CH₄</div>
+            <div class="climate-stat-label">Methane Reduced</div>
+          </div>
+          <div class="climate-stat">
+            <div class="climate-stat-num">25</div>
+            <div class="climate-stat-label">Farmer Groups</div>
+          </div>
+        </div>
+      </div>
+      <div class="reveal" style="background:rgba(74,122,74,0.08);border:1px solid rgba(74,122,74,0.2);border-radius:6px;padding:40px 36px;">
+        <div class="section-tag" style="margin-bottom:14px;">Why It Matters</div>
+        <p style="font-family:'Playfair Display',serif;font-size:19px;font-style:italic;color:var(--cream);line-height:1.6;margin-bottom:20px;">
+          Agriculture contributes nearly 20% of global greenhouse gas emissions — but it also holds the greatest potential for reversal.
+        </p>
+        <p style="font-size:13px;line-height:1.8;color:rgba(247,242,232,0.6);">
+          Through responsible waste management and large-scale reforestation, MOVFACOS demonstrates that smallholder cooperatives can be powerful climate actors — not just economic ones.
+        </p>
+        <div style="margin-top:28px;display:flex;flex-wrap:wrap;gap:10px;">
+          <span class="about-tag" style="background:rgba(74,122,74,0.2);border-color:rgba(74,122,74,0.4);color:#8fc88f;">Biogas &amp; Compost</span>
+          <span class="about-tag" style="background:rgba(74,122,74,0.2);border-color:rgba(74,122,74,0.4);color:#8fc88f;">Agroforestry</span>
+          <span class="about-tag" style="background:rgba(74,122,74,0.2);border-color:rgba(74,122,74,0.4);color:#8fc88f;">Carbon Sinks</span>
+          <span class="about-tag" style="background:rgba(74,122,74,0.2);border-color:rgba(74,122,74,0.4);color:#8fc88f;">Clean Energy</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- Videos -->
+    <div class="climate-videos reveal">
+
+      <!-- Video 1: Methane & Animal Waste -->
+      <div class="climate-video-card" id="climateCard1">
+        <video id="climateVideo1" src="methane.mp4" preload="metadata" playsinline loop></video>
+        <div class="climate-video-overlay"></div>
+        <button class="climate-play-btn" id="climateBtn1" aria-label="Play methane video">
+          <svg class="icon-play" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M8 5v14l11-7z"/></svg>
+          <svg class="icon-pause" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M6 19h4V5H6v14zm8-14v14h4V5h-4z"/></svg>
+        </button>
+        <div class="climate-video-caption">
+          <span class="climate-video-tag">Methane &amp; Animal Waste</span>
+          <div class="climate-video-title">Turning Waste into Clean Energy</div>
+          <div class="climate-video-desc">Animal waste from MOVFACOS livestock is captured and converted into biogas for cooking and compost for crops — cutting methane emissions and reducing dependence on charcoal.</div>
+        </div>
+      </div>
+
+      <!-- Video 2: Carbon Sequestration / Green Leaves -->
+      <div class="climate-video-card" id="climateCard2">
+        <video id="climateVideo2" src="climate.mp4" preload="metadata" playsinline loop></video>
+        <div class="climate-video-overlay"></div>
+        <button class="climate-play-btn" id="climateBtn2" aria-label="Play carbon sequestration video">
+          <svg class="icon-play" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M8 5v14l11-7z"/></svg>
+          <svg class="icon-pause" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M6 19h4V5H6v14zm8-14v14h4V5h-4z"/></svg>
+        </button>
+        <div class="climate-video-caption">
+          <span class="climate-video-tag">Carbon Sequestration</span>
+          <div class="climate-video-title">Forests Locking in Carbon</div>
+          <div class="climate-video-desc">Dense canopy cover across MOVFACOS farms actively absorbs CO₂, moderates local temperatures, and protects the critical watershed of the Rwenzori Mountains.</div>
+        </div>
+      </div>
+
+    </div>
+
+    <!-- Impact cards -->
+    <div class="climate-impacts reveal">
+      <div class="climate-impact-card">
+        <div class="climate-impact-icon">🐄</div>
+        <div class="climate-impact-title">Waste-to-Biogas</div>
+        <div class="climate-impact-text">Livestock waste is channelled into biogas digesters, producing clean cooking fuel and eliminating open methane release from animal dung.</div>
+      </div>
+      <div class="climate-impact-card">
+        <div class="climate-impact-icon">🌿</div>
+        <div class="climate-impact-title">Carbon Sequestration</div>
+        <div class="climate-impact-text">Over 10,000 trees planted across member farms store carbon in biomass and soil, contributing measurably to regional climate targets.</div>
+      </div>
+      <div class="climate-impact-card">
+        <div class="climate-impact-icon">♻️</div>
+        <div class="climate-impact-title">Organic Compost</div>
+        <div class="climate-impact-text">Processed animal waste becomes nutrient-rich compost, replacing chemical fertilisers and closing the nutrient loop on MOVFACOS farms.</div>
+      </div>
+      <div class="climate-impact-card">
+        <div class="climate-impact-icon">💨</div>
+        <div class="climate-impact-title">Reduced Deforestation</div>
+        <div class="climate-impact-text">Biogas and briquette programs cut demand for firewood and charcoal, directly protecting forest cover in the ecologically critical Rwenzori region.</div>
+      </div>
+    </div>
+
   </div>
 </section>
 
@@ -2748,7 +3092,7 @@
   <div class="events-inner">
     <div class="events-header reveal">
       <div class="section-tag">Upcoming &amp; Recent</div>
-      <h2 class="section-title">Events &<br><em>Forums</em></h2>
+      <h2 class="section-title">Events &amp;<br><em>Forums</em></h2>
     </div>
     <div class="events-grid">
       <div class="event-card reveal">
@@ -2909,7 +3253,6 @@
 
   totalNumEl.textContent = slides.length;
 
-  // Build dots
   slides.forEach((_, i) => {
     const dot = document.createElement('button');
     dot.className = 'slide-dot' + (i === 0 ? ' active' : '');
@@ -2938,9 +3281,7 @@
     startSlideshow();
   }
 
-  // Pause on dot click, resume after
   dotsContainer.addEventListener('click', resetSlideshow);
-
   startSlideshow();
 
   // ── Scroll reveal ──
@@ -2992,6 +3333,31 @@
 
   const statsEl = document.querySelector('.hero-stats');
   if (statsEl) statsObserver.observe(statsEl);
+
+  // ── Climate video play/pause ──
+  function setupClimateVideo(cardId, videoId, btnId) {
+    const card = document.getElementById(cardId);
+    const video = document.getElementById(videoId);
+    const btn = document.getElementById(btnId);
+    if (!card || !video || !btn) return;
+
+    function togglePlay() {
+      if (video.paused) {
+        video.play();
+        card.classList.add('playing');
+      } else {
+        video.pause();
+        card.classList.remove('playing');
+      }
+    }
+
+    btn.addEventListener('click', (e) => { e.stopPropagation(); togglePlay(); });
+    card.addEventListener('click', togglePlay);
+    video.addEventListener('ended', () => card.classList.remove('playing'));
+  }
+
+  setupClimateVideo('climateCard1', 'climateVideo1', 'climateBtn1');
+  setupClimateVideo('climateCard2', 'climateVideo2', 'climateBtn2');
 </script>
 </body>
 </html>
